@@ -17,8 +17,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Step 6: Copy the current directory contents into the container at /app
 COPY . /app/
 # Copy entrypoint script and make it executable
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY entrypoint.sh app/entrypoint.sh
+RUN chmod +x app/entrypoint.sh
+# Run entrypoint script
+ENTRYPOINT ["app/entrypoint.sh"]
 # Step 7: Expose the port the app runs on
 EXPOSE 8000
 
